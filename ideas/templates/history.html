@@ -1,0 +1,30 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container-fluid">
+
+<h3>Hello History!</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Transaction ID</th>
+      <th scope="col">Transaction Type</th>
+      <th scope="col">Team Invoking</th>
+      <th scope="col">Identity Used</th>
+      <th scope="col">transactionTimestamp</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for j in i %}
+    <tr>
+      <td><a href="{% url 'txn_details' txn_id=j.transactionId %}">{{j.transactionId}}</a></td>
+      <td>{{j.transactionType}}</td>
+      <td>{{j.participantInvoking}}</td>
+      <td>{{j.who}}</td>
+      <td>{{j.transactionTimestamp}}</td>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+
+</div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% load staticfiles %}
+<html>
+
+<head>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+  <title>TVM</title>
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <!-- <img class="navbar-brand" src="https://live-strathcom-cms.pantheonsite.io/valley-ford-hague/wp-content/uploads/sites/471/2018/01/cropped-ford-icon.png" alt="Smiley face" height="200" width="100"> -->
+      <img class="navbar-brand" src="https://vignette.wikia.nocookie.net/logopedia/images/a/a9/76-03.png/revision/latest?cb=20150317163220" alt="Smiley face" height="200" width="100">
+      <h2><a href="/ideas">TVM</a></h2>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <!-- <li class="active"><a href="#">Home</a></li> -->
+      <li><a href="/login">Login</a></li>
+      <li><a href="/ideas/history">History</a></li>
+      <li><a href="{% url 'idea_new' %}"><span class="glyphicon glyphicon-plus"></span></a></li>
+    </ul>
+  </div>
+</div>
+  <!-- <div class="page-header">
+
+    <img src="https://live-strathcom-cms.pantheonsite.io/valley-ford-hague/wp-content/uploads/sites/471/2018/01/cropped-ford-icon.png" alt="Smiley face" height="90" width="90">
+    <a href="{% url 'idea_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+    <h5 class="top-menu"><a href="/ideas/history">History</a></h5>
+    <h5 class="top-menu"><a href="/login">Login</a></h5>
+    <h2><a href="/ideas">TVM</a></h2>
+
+  </div> -->
+
+<!-- <div class="table-responsive"> -->
+  <!-- <div class="content container"> -->
+    <!-- <div class="row">
+      <div class="col-md-8"> -->
+        {% block content %} {% endblock %}
+      <!-- </div> -->
+    <!-- </div> -->
+  <!-- </div> -->
+
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+
+<div class="col-sm-8">
+
+<img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840/d44e5067825199.5b4758f4e192e.jpg" alt="Ford" width="900" height="500">
+
+</div>
+<div class="col-sm-4 text-left">
+  <h2>Login</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Login</button>
+  </form>
+  <br>
+
+  <p><strong>-- OR --</strong></p>
+  <!-- <a href="{% url 'social:begin' 'github' %}">Login with GitHub</a><br> -->
+  <a href="http://localhost:3000/auth/github">Login with GitHub</a><br>
+</div>
+</div>
+  </div>
+{% endblock %}

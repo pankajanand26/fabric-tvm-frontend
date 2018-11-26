@@ -1,0 +1,58 @@
+  {% extends "base.html" %} {% block content %}
+
+<div class="container-fluid">
+
+<h3>Hello Ideas!</h3>
+<h4>{{ op }}</h4>
+
+<div class="table-responsive">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">CRID</th>
+      <th scope="col">Market</th>
+      <th scope="col">Plant Code</th>
+      <th scope="col">TVM Category</th>
+      <th scope="col">Idea Type</th>
+      <th scope="col">Supplier GSDB</th>
+      <th scope="col">Idea Description</th>
+      <th scope="col">Annual Savings</th>
+      <th scope="col">Cal Savings</th>
+      <th scope="col">Ageing Days</th>
+      <th scope="col">Rank</th>
+      <th scope="col">Date of Imp</th>
+      <th scope="col">Lead Function</th>
+      <th scope="col">CRID Stage</th>
+      <th scope="col">Current Team</th>
+      <th scope="col">History</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for j in i %}
+    <tr>
+      <th scope="row">    <a href="{% url 'idea_update' idea_id=j.CRID %}">{{j.CRID}}</a></th>
+      <td>{{j.market}}</td>
+      <td>{{j.plantCode}}</td>
+      <td>{{j.tvmCategory}}</td>
+      <td>{{j.ideaType}}</td>
+      <td>{{j.supplierGSDB}}</td>
+      <td>{{j.description}}</td>
+      <td>{{j.annualSavings}}</td>
+      <td>{{j.calSaving}}</td>
+      <td>{{j.ageingDays}}</td>
+      <td>{{j.rank}}</td>
+      <td>{{j.dateOfImp}}</td>
+      <td>{{j.leadFunction}}</td>
+      <td>{{j.CRIDStage}}</td>
+      <td>{{j.owner}}</td>
+      <th scope="row">    <a class="link" href="{% url 'idea_history' idea_id=j.CRID %}"><span class="glyphicon glyphicon-list-alt"></span></a></th>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+</div >
+
+</div>
+</div>
+
+{% endblock %}
