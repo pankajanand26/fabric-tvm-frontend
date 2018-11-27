@@ -315,10 +315,10 @@ def report(request):
     idea_count['FIN']=fin_count
 
     data =  [
-        ['Team', 'No. of Ideas'],
-        ['TVM', tvm_count],
-        ['RTM', rtm_count],
-        ['FIN', fin_count]
+        ['Team', 'No. of Ideas', 'test','test1'],
+        ['TVM', tvm_count, 10, 30],
+        ['RTM', rtm_count, 20, 20],
+        ['FIN', fin_count, 30, 10]
     ]
     # DataSource object
     data_source = SimpleDataSource(data=data)
