@@ -290,6 +290,13 @@ def get_idea_history(request, idea_id):
 
 
 def report(request):
+    url="http://localhost:3000/api/org.apache.tvmnetwork.Idea?access_token="+'i4DGtU7ztEnL06mqoiKCyGRYGvOmNxFeqCGUKvatXoTh33uOgvWfME0LRZmf0jDE'
+    r=requests.get(url)
+    i=r.json()
+    idea_count={}
+
+    
+
     # access_token=unquote(cookie.split(";")[4])
     # access_token=(access_token.split(".")[0]).split(":")[1]
-    return HttpResponse("Hello, world. You're at the report page.")
+    return HttpResponse("Hello, world. You're at the report page."+str(i))
