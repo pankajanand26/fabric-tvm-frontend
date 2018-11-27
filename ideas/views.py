@@ -9,6 +9,17 @@ import json
 import requests
 import social_django
 from urllib.parse import unquote, quote
+from graphos.sources.simple import SimpleDataSource
+from graphos.renderers.gchart import LineChart as gline
+from graphos.renderers.yui import LineChart as yline
+from graphos.renderers.yui import BarChart as ybar
+from graphos.renderers.gchart import BarChart as gbar
+from graphos.renderers.gchart import PieChart as gpie
+from graphos.renderers.gchart import ColumnChart as gcolumn
+from graphos.renderers.gchart import AreaChart as garea
+from graphos.renderers.gchart import CandlestickChart as gcandle
+from graphos.renderers.flot import LineChart as fline
+
 # from social.apps.django_app.default.models import UserSocialAuth
 
 
@@ -290,13 +301,34 @@ def get_idea_history(request, idea_id):
 
 
 def report(request):
-    url="http://localhost:3000/api/org.apache.tvmnetwork.Idea?access_token="+'i4DGtU7ztEnL06mqoiKCyGRYGvOmNxFeqCGUKvatXoTh33uOgvWfME0LRZmf0jDE'
+    url="http://localhost:3000/api/org.apache.tvmnetwork.Idea"
     r=requests.get(url)
     i=r.json()
     idea_count={}
 
-    
 
+    tvm_count=sum(x.get('owner') == 'resource:org.apache.tvmnetwork.Team#TVM' for x in i)
+    rtm_count=sum(x.get('owner') == 'resource:org.apache.tvmnetwork.Team#RTM' for x in i)
+    fin_count=sum(x.get('owner') == 'resource:org.apache.tvmnetwork.Team#FIN' for x in i)
+    idea_count['TVM']=tvm_count
+    idea_count['RTM']=rtm_count
+    idea_count['FIN']=fin_count
+
+    data =  [
+        ['Team', 'No. of Ideas'],
+        ['TVM', tvm_count],
+        ['RTM', rtm_count],
+        ['FIN', fin_count]
+    ]
+    # DataSource object
+    data_source = SimpleDataSource(data=data)
+    # Chart object
+    chart = gcolumn(data_source, options={'title': 'Idea Distribution'})
+    chart1 = fline(data_source)
+    # context = {'chart': chart}
+    # return render(request, 'yourtemplate.html', context)
+
+    return render(request, 'ideas_report.html', { 'chart': chart, 'chart1':chart1})
     # access_token=unquote(cookie.split(";")[4])
     # access_token=(access_token.split(".")[0]).split(":")[1]
-    return HttpResponse("Hello, world. You're at the report page."+str(i))
+    # return HttpResponse("Hello, world. You're at the report page."+str(tvm_count+rtm_count+fin_count))
